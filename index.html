@@ -20,7 +20,95 @@
 </head>
 <body>
 	<h1>Tomagotchi Project</h1>
+	
+<!--
+<h5>
+                     .--.  .--.  
+                    /    \/    \  
+                   | .-.  .-.   \ 
+                   |/_  |/_  |   \ 
+                   || `\|| `\|    `----. 
+                   |\0_/ \0_/    --,    \_ 
+ .--"""""-.       /              (` \     `-. 
+/          \-----'-.              \          \ 
+\  () ()                         /`\          \ 
+|                         .___.-'   |          \ 
+\                        /` \|      /           ; 
+ `-.___             ___.' .-.`.---.|             \ 
+    \| ``-..___,.-'`\| / /   /     |              `\ 
+     `      \|      ,`/ /   /   ,  /
+             `      |\ /   /    |\/
+              ,   .'`-;   '     \/
+         ,    |\-'  .'   ,   .-'`
+       .-|\--;`` .-'     |\.'
+      ( `"'-.|\ (___,.--'`'   
+       `-.    `"`          _.--'
+          `.          _.-'`-.
+            `''---''``       `.
 
+</h5> 
+<h5>
+           boing         boing         boing              
+ e-e           . - .         . - .         . - .          
+(\_/)\       '       `.   ,'       `.   ,'       .        
+ `-'\ `--.___,         . .           . .          .       
+    '\( ,_.-'                                             
+       \\               "             "                   
+       ^'                                                
+
+</h5>  -->
+<h5>
+  .::::::::..          ..::::::::.
+ :::::::::::::        :::::::::::::
+:::::::::::' .\      /. `:::::::::::
+`::::::::::_,__o    o__,_::::::::::'
+</h5>
+	<h5 class="name">Name of pet</h5>
+
+	<fieldset class="lightOffOn">
+		<legend class="lightOffOnLegend">Turn Lights Off</legend>
+		<button type="button" class="lights">Turn Lights Off</button>
+		<div class="whiteSpace"><br></div>
+	</fieldset>	
+
+	<fieldset class="endGame">
+		<legend class="endGameLegend">End the Game</legend>
+		<button type="button" class="endPlay">End the Game</button>
+		<div class="whiteSpace"><br></div>
+	</fieldset>	
+
+	<fieldset class="AgeCount">
+		<legend class="AgeCountLegend">Age: 0</legend>
+		<label class="age"><br></label>
+		<div id="progressBarAge" class="progressBar"></div>
+	</fieldset>
+	
+	
+	<fieldset class="HungerCount">
+		<legend class="HungerCountLegend">Hunger: 0</legend>
+		<button type="button" class="feed">Feed Pet</button>
+		<div id="progressBarHunger" class="progressBar"></div>
+	</fieldset>
+	
+
+	<fieldset class="BoredomCount">
+		<legend class="BoredomCountLegend">Boredom: 0</legend>
+		<button type="button" class="play">Entertain Pet</button>
+		<div id="progressBarBoredom" class="progressBar"></div>
+	</fieldset>
+
+	<fieldset class="SleepCount">
+		<legend class="SleepCountLegend">Sleepiness: 0</legend>
+		<button type="button" class="sleep">Rest Pet</button>
+		<div id="progressBarSleep" class="progressBar"></div> 
+	</fieldset>
+
+	<h2 class="died"><br></h2>	
+	<div class="namePetDiv">
+		<label>Name Your Pet</label>
+		<input type="text" class="namePetInput">
+		<button type="button" class="namePetButton">Submit</button>
+	</div>
 
 	<script src="./js/app.js"></script>
 </body>

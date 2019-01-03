@@ -1,3 +1,47 @@
-h1 {
+body {
+	background-color: white;
+}
+h1, h2 {
 	color: blue;
+	text-align: center;
+}
+h5 {
+	white-space: pre;
+	text-align: center;
+	font-family: "Andale mono", monospace;
+}
+fieldset {
+  	text-align: center;
+  	display: inline-block;
+  	color: #FFFFFF;
+  	color: black;
+  	position:relative;
+  	top:70%;
+  	left:29%;
+  	font-size: 18px;
+  	height: 100px;
+}
+.progressBar {
+    width: 100px;
+    height: 20px;
+    border: 1px solid #111;
+    margin: 7px auto;
+}
+.ui-progressbar-value {
+    background: red;
+}
+.ui-progressbar {
+    background: white;
+}
+button {
+	color: black;
+	background-color: none;
+}
+.whiteSpace {
+	margin: 15px 0 15px 0;
+	font-size: 20px;
+}
+.namePetDiv {
+
+	text-align: center;
 }
