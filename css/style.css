@@ -17,7 +17,7 @@ fieldset {
   	color: black;
   	position:relative;
   	top:70%;
-  	left:29%;
+  	left:35%;
   	font-size: 18px;
   	height: 100px;
 }
@@ -42,6 +42,5 @@ button {
 	font-size: 20px;
 }
 .namePetDiv {
-
 	text-align: center;
 }

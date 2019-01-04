@@ -41,6 +41,7 @@ $( ".lights" ).click(function() {
 		$( "fieldset" ).css("color", "green")
 		$( "button" ).css("color", "green")
 		$( "button" ).css("background-color", "black")
+		tomagotchiPet.sleepiness = 0;
 	} else {
 		$( "body" ).css("background", "white");
 		$( "h5" ).css("color", "black");
@@ -55,9 +56,9 @@ $( ".feed" ).click(function() {
 	tomagotchiPet.hunger = 0;
 });
 
-$( ".sleep" ).click(function() { 
-	tomagotchiPet.sleepiness = 0;
-});
+//$( ".sleep" ).click(function() { 
+//	tomagotchiPet.sleepiness = 0;
+//});
 
 $( ".play" ).click(function() { 
 	tomagotchiPet.boredom = 0;
@@ -80,17 +81,17 @@ function increaseHunger() {
     $( "#progressBarHunger" ).progressbar( "option", "value", (tomagotchiPet.hunger * 10));
     if (tomagotchiPet.hunger >= 10) {
     	endGame();
-    	$( ".died" ).text(tomagotchiPet.name + " Died.  Game Over!!!")
+    	$( ".died" ).text(tomagotchiPet.name + " Died of Hunger.  Game Over!!!")
     }
 }
 
 function increaseSleepiness() {
-    tomagotchiPet.sleepiness++;
-    $( ".SleepCountLegend" ).text("Slieepiness: " + tomagotchiPet.sleepiness)
+    if ( $( ".lights" ).text() !== "Turn Lights On") tomagotchiPet.sleepiness++;
+    $( ".SleepCountLegend" ).text("Sleepiness: " + tomagotchiPet.sleepiness)
     $( "#progressBarSleep" ).progressbar( "option", "value", (tomagotchiPet.sleepiness * 10));
     if (tomagotchiPet.sleepiness >= 10) {
     	endGame();
-    	$( ".died" ).text(tomagotchiPet.name + " Died.  Game Over!!!")
+    	$( ".died" ).text(tomagotchiPet.name + " Died of Sleepiness.  Game Over!!!")
     }
 }
 
@@ -100,17 +101,70 @@ function increaseBoredom() {
     $( "#progressBarBoredom" ).progressbar( "option", "value", (tomagotchiPet.boredom * 10));
     if (tomagotchiPet.boredom >= 10) {
     	endGame();
-    	$( ".died" ).text(tomagotchiPet.name + " Died.  Game Over!!!")
+    	$( ".died" ).text(tomagotchiPet.name + " Died of Boredom.  Game Over!!!")
     }
 
     //console.log("Boredom: " + tomagotchiPet.boredom);
 }
+
+
+//----------------------------------------------------------------------------------
+//Moving my 
+//----------------------------------------------------------------------------------
+let y = 0;
+let z = 0;
+let regExp = /q/ig;
+let regExp2 = /x/ig;
+let space = " ";
+let morph = "";
+let morphOld = 
+" \r\n \
+q--------------  \r\n \
+q|   I'm old   | \r\n \
+q--------------  \r\n \
+q|               \r\n \
+q|   ";
+let morphOld2="";
+
+function movement() {
+    
+if (z % 2 === 0) {
+    tomagotchiPics2 = tomagotchiPicsMoveRight.replace(regExp, space.repeat(y) );
+    if (tomagotchiPet.age > 10) {
+    	morphOld2 = morphOld.replace(regExp, space.repeat(y) );
+    	tomagotchiPics2 = tomagotchiPics2.replace(regExp, space.repeat(y) ).replace(regExp2, morphOld2 );
+    	//tomagotchiPics2 = tomagotchiPics2.replace(regExp2, morphOld );
+	} else {
+		tomagotchiPics2 = tomagotchiPics2.replace(regExp2, morph );
+	}
+    y++;
+} else {
+	tomagotchiPics2 = tomagotchiPicsMoveLeft.replace(regExp, space.repeat(y) );
+	if (tomagotchiPet.age > 10) {
+    	morphOld2 = morphOld.replace(regExp, space.repeat(y) );
+    	tomagotchiPics2 = tomagotchiPics2.replace(regExp, space.repeat(y) ).replace(regExp2, morphOld2 );
+    	//tomagotchiPics2 = tomagotchiPics2.replace(regExp2, morphOld );
+	} else {
+		tomagotchiPics2 = tomagotchiPics2.replace(regExp2, morph );
+	}
+	y--;
+}
+    $( ".pic" ).text(tomagotchiPics2);
+    
+    if ( y >= 15 || y <= 0) {
+    	z++;
+    }
+    //console.log("Boredom: " + tomagotchiPet.boredom);
+}
+
+
 
 function endGame() {
 	clearInterval(intervalAge);
 	clearInterval(intervalHunger);
 	clearInterval(intervalBoredom);
 	clearInterval(intervalSleepiness);
+	clearInterval(intervalMove);
 }
 
 $( ".endPlay" ).click(function() { 
@@ -127,10 +181,10 @@ $( ".name" ).text(tomagotchiPet.name);
 
 
 intervalAge = setInterval(increaseAge, 1000);
-intervalHunger = setInterval(increaseHunger, 1000);
-intervalBoredom = setInterval(increaseBoredom, 1000);
-intervalSleepiness = setInterval(increaseSleepiness, 1000);
-
+intervalHunger = setInterval(increaseHunger, 2000);
+intervalBoredom = setInterval(increaseBoredom, 3000);
+intervalSleepiness = setInterval(increaseSleepiness, 4000);
+intervalMove = setInterval(movement, 500);
 
 //----------------------------------------------------------------------------------
 //Initialize the Progress bar jQuery UI
@@ -158,9 +212,75 @@ $( ".namePetButton" ).click(function() {
 	if (task === "") {
 		alert("Name Cannot be blank");
 	} else {
-		console.log(task);
 		tomagotchiPet.name = task;
 		$( ".name" ).text(tomagotchiPet.name);
 	}
+	$( ".namePetInput" ).val("");
 });
+
+
+let tomagotchiPicsMoveRight = 
+
+"q       x            \r\n \
+ q  .::::::::..       \r\n \
+ q :::::::::::::      \r\n \
+ q:::::::::::' .\     \r\n \
+ q`::::::::::_,__o    ";
+
+let tomagotchiPicsMoveLeft = 
+
+
+"q   x            \r\n \
+ q   ..::::::::.  \r\n \
+ q  ::::::::::::: \r\n \
+ q /. `:::::::::::\r\n \
+ qo__,_::::::::::'";
+
+/*
+
+"   .::::::::..       \r\n \
+   :::::::::::::      \r\n \
+  :::::::::::' .\     \r\n \
+  `::::::::::_,__o    ",
+
+"    .::::::::..       \r\n \
+    :::::::::::::      \r\n \
+   :::::::::::' .\     \r\n \
+   `::::::::::_,__o    ",
+
+
+"     .::::::::..       \r\n \
+     :::::::::::::      \r\n \
+    :::::::::::' .\     \r\n \
+    `::::::::::_,__o    ",    
+
+"      .::::::::..       \r\n \
+      :::::::::::::      \r\n \
+     :::::::::::' .\     \r\n \
+     `::::::::::_,__o    ",
+
+"       .::::::::..       \r\n \
+       :::::::::::::      \r\n \
+      :::::::::::' .\     \r\n \
+      `::::::::::_,__o    ",
+
+"   .::::::::..       \r\n \
+   :::::::::::::      \r\n \
+  :::::::::::' .\     \r\n \
+  `::::::::::_,__o    ",
+
+"   .::::::::..       \r\n \
+   :::::::::::::      \r\n \
+  :::::::::::' .\     \r\n \
+  `::::::::::_,__o    "  
+
+  */
+
+
+
+
+
+
+
+
 
